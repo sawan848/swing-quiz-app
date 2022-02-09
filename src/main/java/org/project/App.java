@@ -1,4 +1,4 @@
-package org.java.project;
+package org.project;
 
 /**
  * Hello world!

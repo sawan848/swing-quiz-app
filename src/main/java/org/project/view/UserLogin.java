@@ -1,4 +1,4 @@
-package org.java.project.view;
+package org.project.view;
 
 
 import javax.swing.*;

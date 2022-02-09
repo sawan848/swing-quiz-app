@@ -1,4 +1,4 @@
-package org.java.project.model;
+package org.project.model;
 
 import jakarta.persistence.*;
 
@@ -17,7 +17,6 @@ public class User {
     private String password;
     @Transient
     private String confirmPassword;
-    private String userType;
 
     public int getId() {
         return id;
@@ -57,13 +56,7 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getUserType() {
-        return userType;
-    }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
 
     @Override
     public String toString() {
@@ -72,7 +65,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
-                ", userType='" + userType + '\'' +
+
                 '}';
     }
 }
