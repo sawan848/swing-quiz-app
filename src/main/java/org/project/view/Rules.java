@@ -14,20 +14,20 @@ import java.awt.event.ActionListener;
 public class Rules extends JFrame implements ActionListener {
 
     private JButton backBtn, startBtn;
-    private String username;
+    private String userEmail;
 
     public Rules(final String email) {
-        this.username = username;
+        this.userEmail = email;
         setBounds(600, 200, 800, 650);
         getContentPane().setBackground(Color.WHITE);
         getContentPane().setForeground(Color.GRAY);
         setLayout(null);
 
 
-        JLabel welcomeLabel = new JLabel("Welcome " + username + " to Simple Minds");
+        JLabel welcomeLabel = new JLabel("Welcome " + userEmail + " to Simple Minds");
         welcomeLabel.setForeground(new Color(30, 144, 255));
         welcomeLabel.setFont(new Font("Viner Hand ITC", Font.BOLD, 28));
-        welcomeLabel.setBounds(50, 20, 700, 30);
+        welcomeLabel.setBounds(50, 20, 700, 60);
         add(welcomeLabel);
 
 
@@ -73,12 +73,12 @@ public class Rules extends JFrame implements ActionListener {
         if(ae.getSource() == backBtn){
             dispose();
             this.setVisible(false);
-            new QuizWelcomeHome(username).setVisible(true);
+            new QuizWelcomeHome(userEmail).setVisible(true);
         }else if(ae.getSource() == startBtn){
             this.setVisible(false);
 
-            Quiz quiz=new Quiz(username);
-            quiz.setTitle(username);
+            Quiz quiz=new Quiz(userEmail);
+            quiz.setTitle(userEmail);
             quiz.setVisible(true);
         }
         

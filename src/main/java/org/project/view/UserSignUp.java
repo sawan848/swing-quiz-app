@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
+import static org.project.contoller.UserController.insertUser;
+
 
 public class UserSignUp extends JFrame  {
 
@@ -19,7 +21,7 @@ public class UserSignUp extends JFrame  {
 
 
 
-    private JCheckBox checkBox;
+    private final JCheckBox checkBox;
     int xx,xy;
 
     public static void main(String[] args) {
@@ -116,13 +118,14 @@ public class UserSignUp extends JFrame  {
                     user.setEmail(userEmailTextField.getText());
                     user.setPassword(new String(localPasswordField.getPassword()));
                     user.setConfirmPassword(new String(confirmPasswordField.getPassword()));
-//                            insertUser(user);
-                    userEmailTextField.setText(" ");
-                    userNameTextField.setText(" ");
-                    localPasswordField.setText("");
-                    confirmPasswordField.setText("");
-                    checkBox.setSelected(false);
-                    System.out.println(user);
+                    if (insertUser(user)){
+                        userEmailTextField.setText(" ");
+                        userNameTextField.setText(" ");
+                        localPasswordField.setText("");
+                        confirmPasswordField.setText("");
+                        checkBox.setSelected(false);
+                        System.out.println(user);
+                    }
                 });
             }
         });

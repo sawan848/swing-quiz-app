@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.stream.IntStream;
 
 /**
  * 10/02/2022
@@ -15,18 +16,24 @@ import java.awt.event.ActionListener;
 
 public class Quiz extends JFrame implements ActionListener {
 
-    private JButton next, submit, lifeline;
+    private final JButton next;
+    private final JButton submit;
+    private final JButton lifeline;
     private static int count = 0;
     private static int timer = 15;
     private static int ans_given = 0;
     private static int score = 0;
-    private JLabel qno, question;
-    private String q[][] = new String[10][5];
-    private String pa[][] = new String[10][1];
-    private String qa[][] = new String[10][2];
-    private JRadioButton opt1, opt2, opt3, opt4;
-    private ButtonGroup options;
-    private String username;
+    private final JLabel qno;
+    private final JLabel question;
+    private final String[][] q = new String[10][5];
+    private final String[][] pa = new String[10][1];
+    private final String[][] qa = new String[10][2];
+    private final JRadioButton opt1;
+    private final JRadioButton opt2;
+    private final JRadioButton opt3;
+    private final JRadioButton opt4;
+    private final ButtonGroup options;
+    private final String username;
 
     public Quiz(final String username) {
 
@@ -218,13 +225,14 @@ public class Quiz extends JFrame implements ActionListener {
                 pa[count][0] = options.getSelection().getActionCommand();
             }
 
-            for (int i = 0; i < pa.length; i++) {
+            int bound = pa.length;
+            IntStream.range(0, bound).forEach(i -> {
                 if (pa[i][0].equals(qa[i][1])) {
                     score += 10;
                 } else {
                     score += 0;
                 }
-            }
+            });
             this.setVisible(false);
             String insertedScore = null;
             Results result = new Results();
