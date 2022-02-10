@@ -12,6 +12,11 @@ import org.project.model.*;
 
 public class UserController {
     private static EntityManager entityManager=null;
+    private static TripleDes des;
+
+    public UserController() throws Exception {
+        des=new TripleDes();
+    }
 
     private static void beginQuery(){
         EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory("pu");
@@ -19,13 +24,16 @@ public class UserController {
         entityManager.getTransaction().begin();
     }
     private static boolean userValidation(User user){
+
         try {
             Validation validation=new UserValidation();
             if (validation.isValidUsername(user.getUsername())){
                 user.setUsername(user.getUsername());
             }else if (validation.isValidPassword(user.getPassword())
                     && validation.isValidPassword(user.getConfirmPassword())  ){
-                user.setPassword(user.getPassword());
+                System.out.println("password :\t"+des.encrypt(user.getPassword()));
+                String password=des.encrypt(user.getPassword());
+                user.setPassword(password);
             }else  if (validation.isValidEmail(user.getEmail())){
                 user.setEmail(user.getEmail());
             }

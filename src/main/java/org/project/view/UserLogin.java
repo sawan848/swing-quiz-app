@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
+import static org.project.contoller.UserController.findByEmail;
+
 /**
  * 09/02/2022
  */
@@ -74,6 +76,10 @@ public class UserLogin extends JFrame {
             UserLogin.this.dispose();
             String email=emailTextField.getText();
             String password=new String(passwordField.getPassword());
+            User user=findByEmail(email);
+            if (email.equals(user.getEmail())&& password.equals(user.getPassword())){
+                new QuizWelcomeHome(email).setVisible(true);
+            }
         });
         login.setForeground(Color.WHITE);
         login.setBackground(new Color(250, 128, 114));
