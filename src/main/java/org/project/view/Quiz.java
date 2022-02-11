@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.stream.IntStream;
 
+import static org.project.contoller.UserController.insertScore;
+
 /**
  * 10/02/2022
  */
@@ -238,7 +240,7 @@ public class Quiz extends JFrame implements ActionListener {
             Results result = new Results();
             result.setEmail(username);
             result.setTotalScore(score);
-//            insertedScore = insertScore(result);
+            insertedScore = insertScore(result);
             System.out.println(insertedScore);
             new Score(username, score).setVisible(true);
 

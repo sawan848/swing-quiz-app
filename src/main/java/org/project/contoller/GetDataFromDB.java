@@ -3,7 +3,9 @@ package org.project.contoller;
 
 import org.project.model.User;
 
-import static org.project.contoller.UserController.findByEmail;
+import java.util.List;
+
+import static org.project.contoller.UserController.*;
 
 /**
  * 10/02/2022
@@ -12,11 +14,12 @@ import static org.project.contoller.UserController.findByEmail;
 
 public class GetDataFromDB {
     public static void main(String[] args) throws Exception {
-        User user=new User();
-        User byEmail = findByEmail("radhemohan@gmail.com");
-        user.setPassword("hello");
-        TripleDes des=new TripleDes();
-        String encrypt = des.decrypt(byEmail.getPassword());
-        System.out.println(user+"\n"+byEmail+"\n"+encrypt);
+        System.out.println(" = " + getAllUsers());
+//        User user=new User();
+//        User byEmail = findByEmail("radhemohan@gmail.com");
+//        user.setPassword("hello");
+//        TripleDes des=new TripleDes();
+//        String encrypt = des.decrypt(byEmail.getPassword());
+//        System.out.println(user+"\n"+byEmail+"\n"+encrypt);
     }
 }

@@ -2,7 +2,14 @@ package org.project.contoller;
 
 
 import jakarta.persistence.*;
+import org.hibernate.Session;
+import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
 import org.project.model.*;
+import  org.hibernate.cfg.Configuration;
+
+import javax.imageio.spi.ServiceRegistry;
+import java.security.Provider;
+import java.util.List;
 
 
 /**
@@ -24,6 +31,7 @@ public class UserController {
         entityManager.getTransaction().begin();
     }
 
+
     public static boolean insertUser(User user){
         beginQuery();
             entityManager.persist(user);
@@ -44,5 +52,15 @@ public class UserController {
         User user=entityManager.find(User.class,email);
         entityManager.getTransaction().commit();
         return user;
+    }
+
+    public static List<User> getAllUsers(){beginQuery();
+        Query query=entityManager.createQuery("from User");
+        List<User>users=(List<User>) query.getResultList();
+//        for (User userss:users){
+//            System.out.println("useras= " + users);
+//        }
+        entityManager.getTransaction().commit();
+        return users;
     }
 }
