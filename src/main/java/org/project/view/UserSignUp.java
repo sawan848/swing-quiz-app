@@ -1,6 +1,7 @@
 package org.project.view;
 
 
+import org.project.contoller.SignBtn;
 import org.project.model.User;
 
 import javax.swing.*;
@@ -110,23 +111,14 @@ public class UserSignUp extends JFrame  {
         contentPane.add(signUpBtn);
         checkBox.addActionListener(e -> {
             if (checkBox.isSelected()){
-                signUpBtn.addActionListener(e1 -> {
-
                     User user=new User();
 
                     user.setUsername(userNameTextField.getText());
                     user.setEmail(userEmailTextField.getText());
                     user.setPassword(new String(localPasswordField.getPassword()));
                     user.setConfirmPassword(new String(confirmPasswordField.getPassword()));
-                    if (insertUser(user)){
-                        userEmailTextField.setText(" ");
-                        userNameTextField.setText(" ");
-                        localPasswordField.setText("");
-                        confirmPasswordField.setText("");
-                        checkBox.setSelected(false);
-                        System.out.println(user);
-                    }
-                });
+                    SignBtn signBtn=new SignBtn(user,message);
+                    signUpBtn.addActionListener(signBtn);
             }
         });
 
@@ -151,6 +143,7 @@ public class UserSignUp extends JFrame  {
                 userNameTextField.setText(" ");
                 localPasswordField.setText("");
                 confirmPasswordField.setText("");
+                message.setText(" ");
                 checkBox.setSelected(false);
 
         });
@@ -168,7 +161,7 @@ public class UserSignUp extends JFrame  {
         userEmailTextField.setBounds(329, 139, 283, 29);
         contentPane.add(userEmailTextField);
 
-        message.setBounds(310,40,400,34);
+        message.setBounds(420,20,400,34);
         message.setForeground(Color.RED);
         contentPane.add(message);
 

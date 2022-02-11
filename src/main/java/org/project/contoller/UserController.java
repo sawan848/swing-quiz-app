@@ -23,29 +23,13 @@ public class UserController {
         entityManager=entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
     }
-    private static boolean userValidation(User user){
 
-        try {
-            Validation validation=new UserValidation();
-            if (validation.isValidUsername(user.getUsername())){
-                user.setUsername(user.getUsername());
-            }else if (validation.isValidPassword(user.getPassword())
-                    && validation.isValidPassword(user.getConfirmPassword())  ){
-                System.out.println("password :\t"+des.encrypt(user.getPassword()));
-                String password=des.encrypt(user.getPassword());
-                user.setPassword(password);
-            }else  if (validation.isValidEmail(user.getEmail())){
-                user.setEmail(user.getEmail());
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return  true;
-    }
     public static boolean insertUser(User user){
         beginQuery();
-        if (userValidation(user))entityManager.persist(user);
+            entityManager.persist(user);
         entityManager.getTransaction().commit();
+
+        System.out.println(user);
         return true;
     }
     public static String insertScore(Results results){

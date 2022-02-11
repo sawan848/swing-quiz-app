@@ -1,6 +1,7 @@
 package org.project.view;
 
 
+import org.project.contoller.TripleDes;
 import org.project.model.User;
 
 import javax.swing.*;
@@ -77,9 +78,17 @@ public class UserLogin extends JFrame {
             String email=emailTextField.getText();
             String password=new String(passwordField.getPassword());
             User user=findByEmail(email);
-            if (email.equals(user.getEmail())&& password.equals(user.getPassword())){
-                new QuizWelcomeHome(email).setVisible(true);
+            TripleDes des=null;
+            try {
+                des=new TripleDes();
+                final var decryptPassword = des.decrypt(user.getPassword());
+                if (email.equals(user.getEmail())&& password.equals(decryptPassword)){
+                    new QuizWelcomeHome(email).setVisible(true);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
+
         });
         login.setForeground(Color.WHITE);
         login.setBackground(new Color(250, 128, 114));
