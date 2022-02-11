@@ -112,7 +112,7 @@ public class QuizWelcomeHome extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        new QuizWelcomeHome("maghra@gmail.com");
-    }
+//    public static void main(String[] args) {
+//        new QuizWelcomeHome("maghra@gmail.com");
+//    }
 }

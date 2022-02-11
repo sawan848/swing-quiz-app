@@ -59,7 +59,7 @@ public class Score extends JFrame implements ActionListener {
         new QuizWelcomeHome(username).setVisible(true);
     }
 
-    public static void main(String[] args){
-        new Score("", 0).setVisible(true);
-    }
+//    public static void main(String[] args){
+//        new Score("", 0).setVisible(true);
+//    }
 }

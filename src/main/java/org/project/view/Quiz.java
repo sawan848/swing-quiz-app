@@ -334,8 +334,8 @@ public class Quiz extends JFrame implements ActionListener {
         options.clearSelection();
     }
 
-    public static void main(String[] args) {
-        new Quiz("").setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        new Quiz("").setVisible(true);
+//    }
 
 }

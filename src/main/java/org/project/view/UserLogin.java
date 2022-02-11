@@ -185,18 +185,18 @@ public class UserLogin extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(()->{
-            try {
-                UserLogin login=new UserLogin();
-                login.setUndecorated(true);
-                login.setVisible(true);
-                login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    public static void main(String[] args) {
+//        EventQueue.invokeLater(()->{
+//            try {
+//                UserLogin login=new UserLogin();
+//                login.setUndecorated(true);
+//                login.setVisible(true);
+//                login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        });
 
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        });
-
-    }
+//    }
 }

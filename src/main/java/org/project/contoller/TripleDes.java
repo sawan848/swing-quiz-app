@@ -62,19 +62,19 @@ public class TripleDes {
         return decryptedText;
     }
 
-    public static void main(String args []) throws Exception
-    {
-        TripleDes td= new TripleDes();
-
-        String target="imparator";
-        String encrypted=td.encrypt(target);
-        String decrypted=td.decrypt(encrypted);
-
-        System.out.println("String To Encrypt: "+ target);
-        System.out.println("Encrypted String:" + encrypted);
-        System.out.println("Decrypted String:" + decrypted);
-
-    }
+//    public static void main(String args []) throws Exception
+//    {
+//        TripleDes td= new TripleDes();
+//
+//        String target="imparator";
+//        String encrypted=td.encrypt(target);
+//        String decrypted=td.decrypt(encrypted);
+//
+//        System.out.println("String To Encrypt: "+ target);
+//        System.out.println("Encrypted String:" + encrypted);
+//        System.out.println("Decrypted String:" + decrypted);
+//
+//    }
 
 
 }

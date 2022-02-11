@@ -25,17 +25,17 @@ public class UserSignUp extends JFrame  {
     private final JCheckBox checkBox;
     int xx,xy;
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                UserSignUp userSignUp = new UserSignUp();
-                userSignUp.setUndecorated(true);
-                userSignUp.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//        EventQueue.invokeLater(() -> {
+//            try {
+//                UserSignUp userSignUp = new UserSignUp();
+//                userSignUp.setUndecorated(true);
+//                userSignUp.setVisible(true);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
+//    }
 
     /**
      * Create the frame.
