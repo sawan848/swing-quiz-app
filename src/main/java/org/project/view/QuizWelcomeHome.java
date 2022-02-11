@@ -2,10 +2,20 @@ package org.project.view;
 
 
 
+import org.project.contoller.UserValidation;
+import org.project.contoller.Validation;
+import org.project.model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.project.contoller.UserController.findByEmail;
+import static org.project.contoller.UserController.getAllUsers;
 
 /**
  * 10/02/2022
@@ -62,11 +72,26 @@ public class QuizWelcomeHome extends JFrame {
 
         add(rulesBtn);
         rulesBtn.addActionListener(e -> {
-            dispose();
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            Rules rules=new Rules(email);
-            rules.setVisible(true);
-            rules.setTitle(email);
+            String userEmail=emailTextField.getText();
+            List<User>allUser=getAllUsers();
+            final var stringStream = allUser.stream().map(User::getEmail);
+            final var collect = allUser.stream().
+                    map(User::toString).
+                    filter(user -> user.contains(userEmail)).
+                    collect(Collectors.toList());
+            final var collect1 = stringStream.
+                    filter(s -> userEmail.contains(s))
+                    .collect(Collectors.toList());
+            Validation validation=new UserValidation();
+            if (collect1.contains(userEmail) &&validation.isValidEmail(userEmail)){
+                String userName=findByEmail(userEmail).getUsername();
+                System.out.println("userName = " + userName);
+                dispose();
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                Rules rules=new Rules(userName);
+                rules.setVisible(true);
+                rules.setTitle(email);
+            }
         });
 
 

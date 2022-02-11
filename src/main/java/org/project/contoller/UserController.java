@@ -57,9 +57,6 @@ public class UserController {
     public static List<User> getAllUsers(){beginQuery();
         Query query=entityManager.createQuery("from User");
         List<User>users=(List<User>) query.getResultList();
-//        for (User userss:users){
-//            System.out.println("useras= " + users);
-//        }
         entityManager.getTransaction().commit();
         return users;
     }
