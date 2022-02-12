@@ -24,19 +24,18 @@ public class Rules extends JFrame implements ActionListener {
         setLayout(null);
 
 
-        JLabel welcomeLabel = new JLabel("Welcome " + userEmail + " to Simple Minds");
+        JLabel welcomeLabel = new JLabel("Welcome " + userEmail + " to Quiz ");
         welcomeLabel.setForeground(new Color(30, 144, 255));
         welcomeLabel.setFont(new Font("Viner Hand ITC", Font.BOLD, 28));
-        welcomeLabel.setBounds(50, 20, 700, 60);
+        welcomeLabel.setBounds(230, 20, 700, 60);
         add(welcomeLabel);
-
 
 
         JLabel noticeLabel = new JLabel("");
         noticeLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
         noticeLabel.setBounds(20, 90, 600, 350);
         noticeLabel.setText(
-                "<html>"+
+                "<html>" +
                         "1. You are trained to be a programmer and not a story teller, answer point to point" + "<br><br>" +
                         "2. Do not unnecessarily smile at the person sitting next to you, they may also not know the answer" + "<br><br>" +
                         "3. You may have lot of options in life but here all the questions are compulsory" + "<br><br>" +
@@ -70,20 +69,20 @@ public class Rules extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == backBtn){
+        if (ae.getSource() == backBtn) {
             dispose();
             this.setVisible(false);
             new QuizWelcomeHome(userEmail).setVisible(true);
-        }else if(ae.getSource() == startBtn){
+        } else if (ae.getSource() == startBtn) {
             this.setVisible(false);
 
-            Quiz quiz=new Quiz(userEmail);
+            Quiz quiz = new Quiz(userEmail);
             quiz.setTitle(userEmail);
             quiz.setVisible(true);
         }
-        
+
     }
-    //public static void main(String[] args){
-//        new Rules("");
-//    }
+    public static void main(String[] args){
+        new Rules("Maghra345");
+    }
 }

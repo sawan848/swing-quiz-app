@@ -2,12 +2,16 @@ package org.project.view;
 
 
 import org.project.contoller.TripleDes;
+import org.project.contoller.UserValidation;
+import org.project.contoller.Validation;
 import org.project.model.User;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import static org.project.contoller.UserController.findByEmail;
 
@@ -21,11 +25,11 @@ public class UserLogin extends JFrame {
     private JPanel contentPane;
     private JTextField emailTextField;
     private JPasswordField passwordField;
-    private int xx,xy;
+    private int xx, xy;
 
     public UserLogin() throws HeadlessException {
         setBackground(Color.WHITE);
-        setBounds(100,100,650,443);
+        setBounds(100, 100, 650, 443);
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -75,14 +79,14 @@ public class UserLogin extends JFrame {
         Button login = new Button("Login");
         login.addActionListener(e -> {
             UserLogin.this.dispose();
-            String email=emailTextField.getText();
-            String password=new String(passwordField.getPassword());
-            User user=findByEmail(email);
-            TripleDes des=null;
+            String email = emailTextField.getText();
+            String password = new String(passwordField.getPassword());
+            User user = findByEmail(email);
+            TripleDes des = null;
             try {
-                des=new TripleDes();
+                des = new TripleDes();
                 final var decryptPassword = des.decrypt(user.getPassword());
-                if (email.equals(user.getEmail())&& password.equals(decryptPassword)){
+                if (email.equals(user.getEmail()) && password.equals(decryptPassword)) {
                     new QuizWelcomeHome(email).setVisible(true);
                 }
             } catch (Exception ex) {
@@ -116,8 +120,8 @@ public class UserLogin extends JFrame {
         contentPane.add(emailTextField);
 
 
-        JLabel message=new JLabel("");
-        message.setBounds(310,40,400,34);
+        JLabel message = new JLabel("");
+        message.setBounds(310, 40, 400, 34);
         message.setFont(new Font("Tahoma", Font.BOLD, 20));
         contentPane.add(message);
 
@@ -133,30 +137,33 @@ public class UserLogin extends JFrame {
         passwordField.setBounds(329, 209, 283, 29);
         contentPane.add(passwordField);
 
-        final JCheckBox checkBox=new JCheckBox("show password");
-        checkBox.setBounds(329,241,238,29);
+        final JCheckBox checkBox = new JCheckBox("show password");
+        checkBox.setBounds(329, 241, 238, 29);
         checkBox.setBackground(Color.WHITE);
         contentPane.add(checkBox);
         checkBox.addActionListener(e -> {
-            if (checkBox.isSelected()){
-                passwordField.setEchoChar((char)0);
-            }else {
+            if (checkBox.isSelected()) {
+                passwordField.setEchoChar((char) 0);
+            } else {
                 passwordField.setEchoChar('*');
             }
         });
 
 
-
-        JLabel forgotPassword=new JLabel("if you want to forget password");
+        JLabel forgotPassword = new JLabel("if you want to forget password");
         forgotPassword.setEnabled(false);
         forgotPassword.setBounds(329, 269, 283, 29);
         forgotPassword.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String email = JOptionPane.showInputDialog( "Provide us your  email:" );
+                String email = JOptionPane.showInputDialog("Provide us your  email:");
+                Validation validation=new UserValidation();
+                if ((validation.isValidEmail(email))){
+                    dispose();
+                    new ChangePassword().setVisible(true);
 
-                System.out.println(email);
-                System.out.println("forgot password");
+                }
+
             }
 
         });
@@ -178,25 +185,20 @@ public class UserLogin extends JFrame {
         contentPane.add(crossXLabel);
 
 
-
-
-
-
-
     }
 
-//    public static void main(String[] args) {
-//        EventQueue.invokeLater(()->{
-//            try {
-//                UserLogin login=new UserLogin();
-//                login.setUndecorated(true);
-//                login.setVisible(true);
-//                login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        });
+    public static void main(String[] args) {
+        EventQueue.invokeLater(()->{
+            try {
+                UserLogin login=new UserLogin();
+                login.setUndecorated(true);
+                login.setVisible(true);
+                login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-//    }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        });
+
+    }
 }

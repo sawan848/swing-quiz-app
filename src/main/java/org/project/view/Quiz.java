@@ -18,13 +18,13 @@ import static org.project.contoller.UserController.insertScore;
 
 public class Quiz extends JFrame implements ActionListener {
 
-    private final JButton next;
-    private final JButton submit;
-    private final JButton lifeline;
     private static int count = 0;
     private static int timer = 15;
     private static int ans_given = 0;
     private static int score = 0;
+    private final JButton next;
+    private final JButton submit;
+    private final JButton lifeline;
     private final JLabel qno;
     private final JLabel question;
     private final String[][] q = new String[10][5];
@@ -257,7 +257,6 @@ public class Quiz extends JFrame implements ActionListener {
     }
 
 
-
     public void paint(Graphics g) {
         super.paint(g);
         String time = "Time Left - " + timer + " seconds"; // 15
@@ -320,6 +319,7 @@ public class Quiz extends JFrame implements ActionListener {
             }
         }
     }
+
     public void start(int count) {
         qno.setText("" + (count + 1) + ". ");
         question.setText(q[count][0]);

@@ -1,11 +1,7 @@
 package org.project.contoller;
 
 
-import org.project.model.User;
-
-import java.util.List;
-
-import static org.project.contoller.UserController.*;
+import static org.project.contoller.UserController.getAllUsers;
 
 /**
  * 10/02/2022

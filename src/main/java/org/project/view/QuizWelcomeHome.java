@@ -1,7 +1,6 @@
 package org.project.view;
 
 
-
 import org.project.contoller.UserValidation;
 import org.project.contoller.Validation;
 import org.project.model.User;
@@ -12,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.project.contoller.UserController.findByEmail;
 import static org.project.contoller.UserController.getAllUsers;
@@ -26,10 +24,10 @@ public class QuizWelcomeHome extends JFrame {
     private JButton rulesBtn, exitBtn;
     private JTextField emailTextField;
     private JLabel message;
-    private String email;
+    private final String email;
 
     public QuizWelcomeHome(final String email) {
-        this.email=email;
+        this.email = email;
         setBounds(400, 200, 1200, 450);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
@@ -42,8 +40,8 @@ public class QuizWelcomeHome extends JFrame {
         imageLabel.setBounds(0, -12, 600, 500);
         add(imageLabel);
 
-        message=new JLabel("");
-        message.setBounds(735,300,444,55);
+        message = new JLabel("");
+        message.setBounds(735, 300, 444, 55);
         message.setFont(new Font("Mongolian Baiti", Font.BOLD, 18));
         add(message);
 
@@ -72,8 +70,8 @@ public class QuizWelcomeHome extends JFrame {
 
         add(rulesBtn);
         rulesBtn.addActionListener(e -> {
-            String userEmail=emailTextField.getText();
-            List<User>allUser=getAllUsers();
+            String userEmail = emailTextField.getText();
+            List<User> allUser = getAllUsers();
             final var stringStream = allUser.stream().map(User::getEmail);
             final var collect = allUser.stream().
                     map(User::toString).
@@ -82,15 +80,18 @@ public class QuizWelcomeHome extends JFrame {
             final var collect1 = stringStream.
                     filter(s -> userEmail.contains(s))
                     .collect(Collectors.toList());
-            Validation validation=new UserValidation();
-            if (collect1.contains(userEmail) &&validation.isValidEmail(userEmail)){
-                String userName=findByEmail(userEmail).getUsername();
+            Validation validation = new UserValidation();
+            if (collect1.contains(userEmail) && validation.isValidEmail(userEmail)) {
+                String userName = findByEmail(userEmail).getUsername();
                 System.out.println("userName = " + userName);
                 dispose();
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                Rules rules=new Rules(userName);
+                Rules rules = new Rules(userName);
                 rules.setVisible(true);
                 rules.setTitle(email);
+            }else {
+                message.setText("email not contains in the data base");
+                message.setForeground(Color.RED);
             }
         });
 
@@ -99,12 +100,7 @@ public class QuizWelcomeHome extends JFrame {
         exitBtn.setBounds(915, 270, 120, 25);
         exitBtn.setBackground(new Color(30, 144, 254));
         exitBtn.setForeground(Color.WHITE);
-        exitBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        exitBtn.addActionListener(e -> System.exit(0));
         add(exitBtn);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);

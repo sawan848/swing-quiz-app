@@ -7,23 +7,23 @@ import org.project.model.User;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
-import static org.project.contoller.UserController.insertUser;
 
+/**
+ * user signup class
+ */
+public class UserSignUp extends JFrame {
 
-public class UserSignUp extends JFrame  {
-
-    private JPanel contentPane;
+    private final JCheckBox checkBox;
+    int xx, xy;
+    private final JPanel contentPane;
     private JTextField userNameTextField;
     private JTextField userEmailTextField;
     private JPasswordField localPasswordField;
     private JPasswordField confirmPasswordField;
-
-
-
-    private final JCheckBox checkBox;
-    int xx,xy;
 
 //    public static void main(String[] args) {
 //        EventQueue.invokeLater(() -> {
@@ -51,7 +51,7 @@ public class UserSignUp extends JFrame  {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel message=new JLabel("");
+        JLabel message = new JLabel("");
         message.setFont(new Font("Tahoma", Font.BOLD, 20));
         JPanel panel = new JPanel();
         panel.setBackground(Color.DARK_GRAY);
@@ -95,14 +95,12 @@ public class UserSignUp extends JFrame  {
         welcomesYou.setFont(new Font("Tahoma", Font.PLAIN, 14));
         welcomesYou.setBounds(87, 346, 124, 25);
         panel.add(welcomesYou);
-        checkBox=new JCheckBox("click me if you want to register");
+        checkBox = new JCheckBox("click me if you want to register");
         checkBox.setBounds(329, 355, 283, 35);
         checkBox.setBackground(Color.WHITE);
 
 
-
         final Button signUpBtn = new Button("SignUp");
-
 
 
         signUpBtn.setForeground(Color.WHITE);
@@ -110,15 +108,15 @@ public class UserSignUp extends JFrame  {
         signUpBtn.setBounds(329, 391, 283, 35);
         contentPane.add(signUpBtn);
         checkBox.addActionListener(e -> {
-            if (checkBox.isSelected()){
-                    User user=new User();
+            if (checkBox.isSelected()) {
+                User user = new User();
 
-                    user.setUsername(userNameTextField.getText());
-                    user.setEmail(userEmailTextField.getText());
-                    user.setPassword(new String(localPasswordField.getPassword()));
-                    user.setConfirmPassword(new String(confirmPasswordField.getPassword()));
-                    SignBtn signBtn=new SignBtn(user,message);
-                    signUpBtn.addActionListener(signBtn);
+                user.setUsername(userNameTextField.getText());
+                user.setEmail(userEmailTextField.getText());
+                user.setPassword(new String(localPasswordField.getPassword()));
+                user.setConfirmPassword(new String(confirmPasswordField.getPassword()));
+                SignBtn signBtn = new SignBtn(user, message);
+                signUpBtn.addActionListener(signBtn);
             }
         });
 
@@ -132,19 +130,19 @@ public class UserSignUp extends JFrame  {
         contentPane.add(loginBtn);
         loginBtn.addActionListener(e -> {
             dispose();
-            UserLogin userLogin=new UserLogin();
+            UserLogin userLogin = new UserLogin();
             userLogin.setUndecorated(true);
             userLogin.setVisible(true);
         });
 
         Button resetBtn = new Button("Reset");
-        resetBtn.addActionListener(e-> {
-                userEmailTextField.setText(" ");
-                userNameTextField.setText(" ");
-                localPasswordField.setText("");
-                confirmPasswordField.setText("");
-                message.setText(" ");
-                checkBox.setSelected(false);
+        resetBtn.addActionListener(e -> {
+            userEmailTextField.setText(" ");
+            userNameTextField.setText(" ");
+            localPasswordField.setText("");
+            confirmPasswordField.setText("");
+            message.setText(" ");
+            checkBox.setSelected(false);
 
         });
         resetBtn.setForeground(Color.WHITE);
@@ -161,7 +159,7 @@ public class UserSignUp extends JFrame  {
         userEmailTextField.setBounds(329, 139, 283, 29);
         contentPane.add(userEmailTextField);
 
-        message.setBounds(420,20,400,34);
+        message.setBounds(420, 20, 400, 34);
         message.setForeground(Color.RED);
         contentPane.add(message);
 
@@ -189,20 +187,17 @@ public class UserSignUp extends JFrame  {
         confirmPasswordField.setBounds(329, 280, 283, 29);
         contentPane.add(confirmPasswordField);
 
-        final JCheckBox checkBox=new JCheckBox("show password");
-        checkBox.setBounds(329,315,238,29);
+        final JCheckBox checkBox = new JCheckBox("show password");
+        checkBox.setBounds(329, 315, 238, 29);
         checkBox.setBackground(Color.WHITE);
         contentPane.add(checkBox);
         checkBox.addActionListener(e -> {
-            if (checkBox.isSelected()){
-                localPasswordField.setEchoChar((char)0);
-            }else {
+            if (checkBox.isSelected()) {
+                localPasswordField.setEchoChar((char) 0);
+            } else {
                 localPasswordField.setEchoChar('*');
             }
         });
-
-
-
 
 
         JLabel crossLabel = new JLabel("X");

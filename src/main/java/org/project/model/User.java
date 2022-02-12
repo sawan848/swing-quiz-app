@@ -1,15 +1,17 @@
 package org.project.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 /**
  * 09/02/2022
- *
  */
 
 @Entity
 public class User {
-    @Column(name = "id" ,columnDefinition = "BIGINT(20) NOT NULL UNIQUE KEY auto_increment")
+    @Column(name = "id", columnDefinition = "BIGINT(20) NOT NULL UNIQUE KEY auto_increment")
     private int id;
     private String username;
     @Id
@@ -21,7 +23,6 @@ public class User {
     public int getId() {
         return id;
     }
-
 
 
     public String getUsername() {
@@ -55,7 +56,6 @@ public class User {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-
 
 
     @Override

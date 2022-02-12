@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
 public class Score extends JFrame implements ActionListener {
     private String username;
 
-    public Score(final String username,final int score) {
-        this.username=username;
+    public Score(final String username, final int score) {
+        this.username = username;
 
         setBounds(600, 150, 750, 550);
         getContentPane().setBackground(Color.WHITE);

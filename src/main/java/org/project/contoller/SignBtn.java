@@ -16,51 +16,52 @@ import static org.project.contoller.UserController.insertUser;
 
 public class SignBtn implements ActionListener {
     private JLabel messageLabel;
-    private  User users;
+    private User users;
+
     public SignBtn(User user, JLabel message) {
-        this.users=user;
-        this.messageLabel=message;
+        this.users = user;
+        this.messageLabel = message;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String userName= users.getUsername();
-        String userEmail=users.getEmail();
-        String userPassword=users.getPassword();
-        String userConfirmPassword=users.getConfirmPassword();
-        Validation validation=new UserValidation();
-        if (validation.isValidUsername(userName)){
+        String userName = users.getUsername();
+        String userEmail = users.getEmail();
+        String userPassword = users.getPassword();
+        String userConfirmPassword = users.getConfirmPassword();
+        Validation validation = new UserValidation();
+        if (validation.isValidUsername(userName)) {
             users.setUsername(userName);
-        }else {
+        } else {
             messageLabel.setText("Please enter a valid username");
         }
-        if (validation.isValidEmail(userEmail)){
+        if (validation.isValidEmail(userEmail)) {
             users.setEmail(userEmail);
-        }else{
+        } else {
             messageLabel.setText("Please enter a valid email");
         }
-        if (validation.isValidPassword(userPassword)){
-            if (userPassword.equals(userConfirmPassword)){
-                TripleDes des=null;
+        if (validation.isValidPassword(userPassword)) {
+            if (userPassword.equals(userConfirmPassword)) {
+                TripleDes des = null;
                 try {
-                    des=new TripleDes();
+                    des = new TripleDes();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
                 users.setPassword(des.encrypt(userPassword));
-                System.out.println("password "+ userPassword);
-            }else{
+                System.out.println("password " + userPassword);
+            } else {
                 messageLabel.setText("Please enter a valid password");
             }
-        }else{
+        } else {
             messageLabel.setText("Please enter a valid password");
         }
         System.out.println(users);
-        if (insertUser(users)){
+        if (insertUser(users)) {
 
             messageLabel.setText("data inserted");
             System.out.println(users);
-        }else{
+        } else {
             messageLabel.setText("getting error in inserting data");
         }
 

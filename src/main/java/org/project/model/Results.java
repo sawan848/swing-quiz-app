@@ -1,7 +1,8 @@
 package org.project.model;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 /**
  * 09/02/2022
@@ -44,7 +45,6 @@ public class Results {
     public void setTotalScore(int totalScore) {
         this.totalScore = totalScore;
     }
-
 
 
 }

@@ -13,6 +13,7 @@ public interface Validation {
      * @return
      */
     boolean isValidName(String name);
+
     /**
      * @param username
      * @return
