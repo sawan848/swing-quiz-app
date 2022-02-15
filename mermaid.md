@@ -1,7 +1,7 @@
  ```mermaid
     graph TD;
-        A-->B;
-        A-->C;
-        B-->D;
-        C-->D;
+        src-->main;
+        src-->test;
+        main-->java;
+        main-->resources;
 ```
