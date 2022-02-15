@@ -7,12 +7,13 @@
         resources-->META-INF;
         META-INF-->persistence.xml;
         java-->org; 
-        java-->META-INF;
         org-->project;
         project-->App.java;
         project-->model;
         project-->controller;
         project-->view;
+        model-->User.java;
+        model-->Results.java;
         view-->UserSignUp.java
         view-->UserSignIn.java
         view-->QuizWelcomeHome.java
@@ -25,7 +26,7 @@
         controller-->TripleDes.java;
         controller-->Validation.java;
         controller-->UserValidation.java;
-        controller-->ChangePassword.java;
+        controller-->ChangePasswordBtn.java;
         
         
 ```
