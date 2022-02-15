@@ -1,6 +1,5 @@
 # swing-quiz-app
-
-##swing-hibernate
+## swing-hibernate
 ```mermaid
     graph TD;
         src-->main;
