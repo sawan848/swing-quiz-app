@@ -1,5 +1,5 @@
 ```mermaid
-sequenceDiagram
+ sequenceDiagram
     participant user
     participant [example](example.com)
     participant iframe
